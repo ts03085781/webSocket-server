@@ -47,3 +47,4 @@ npm start
 ```
 
 伺服器將在 `http://localhost:8080` 啟動。
+目前正式環境部署在 RailWay 線上雲端平台：`https://railway.com/`
