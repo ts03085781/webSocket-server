@@ -49,6 +49,18 @@ wss.on('connection', (ws, req) => {
     })
   );
 
+  // 發送歡迎訊息給新連接的用戶
+  ws.send(
+    JSON.stringify({
+      type: 'userId',
+      onlineUsers: getConnectedCount(),
+      id: userId,
+      sender: 'system',
+      message: '',
+      timestamp: new Date().toISOString(),
+    })
+  );
+
   // 監聽 WebSocket 錯誤事件
   ws.on('error', (error) => {
     console.error('WebSocket error:', error);
