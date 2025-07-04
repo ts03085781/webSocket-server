@@ -33,9 +33,11 @@ wss.on('connection', (ws, req) => {
   // 從 URL 參數取得 sender
   const url = new URL(req.url, 'http://localhost');
   const sender = url.searchParams.get('sender');
+  const color = url.searchParams.get('color');
 
   // 將 sender 存到 ws 物件上
   ws.sender = sender;
+  ws.color = color;
 
   // 連線成功時廣播新用戶加入的訊息
   broadcast(
@@ -58,6 +60,7 @@ wss.on('connection', (ws, req) => {
       sender: 'system',
       message: '',
       timestamp: new Date().toISOString(),
+      color: ws.color,
     })
   );
 
@@ -77,6 +80,7 @@ wss.on('connection', (ws, req) => {
         sender: ws.sender,
         message: messageString,
         timestamp: new Date().toISOString(),
+        color: ws.color,
       })
     );
   });
